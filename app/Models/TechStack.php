@@ -12,5 +12,4 @@ class TechStack extends Model
         'order',
         'is_active',
     ];
-    
 }

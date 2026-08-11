@@ -3,11 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\Service;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class ServicesSection extends Component
 {
-    public function render()
+    public function render(): View
     {
         $services = Service::where('is_active', true)
             ->orderBy('order', 'asc')

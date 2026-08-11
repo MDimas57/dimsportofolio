@@ -3,18 +3,19 @@
 namespace App\Livewire;
 
 use App\Models\AboutSection as AboutModel;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class AboutSection extends Component
 {
-    public $about;
+    public ?AboutModel $about = null;
 
-    public function mount()
+    public function mount(): void
     {
         $this->about = AboutModel::first();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('components.about-section');
     }

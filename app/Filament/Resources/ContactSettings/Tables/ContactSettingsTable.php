@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ContactSections\Tables;
+namespace App\Filament\Resources\ContactSettings\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,7 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ContactSectionsTable
+class ContactSettingsTable
 {
     public static function configure(Table $table): Table
     {

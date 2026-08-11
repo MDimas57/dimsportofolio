@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Project extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
         'slug',
@@ -31,14 +28,14 @@ class Project extends Model
 
     protected static function booted(): void
     {
-        static::creating(function ($project) {
-            if (empty($project->slug) && !empty($project->title)) {
+        static::creating(function (Project $project): void {
+            if (empty($project->slug) && ! empty($project->title)) {
                 $project->slug = Str::slug($project->title);
             }
         });
 
-        static::updating(function ($project) {
-            if (empty($project->slug) && !empty($project->title)) {
+        static::updating(function (Project $project): void {
+            if (empty($project->slug) && ! empty($project->title)) {
                 $project->slug = Str::slug($project->title);
             }
         });

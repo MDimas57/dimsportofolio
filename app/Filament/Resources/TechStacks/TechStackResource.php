@@ -7,7 +7,6 @@ use App\Filament\Resources\TechStacks\Pages\EditTechStack;
 use App\Filament\Resources\TechStacks\Pages\ListTechStacks;
 use App\Filament\Resources\TechStacks\Schemas\TechStackForm;
 use App\Filament\Resources\TechStacks\Tables\TechStacksTable;
-use App\Filament\Resources\TechStackResource\Pages;
 use App\Models\TechStack;
 use BackedEnum;
 use Filament\Resources\Resource;

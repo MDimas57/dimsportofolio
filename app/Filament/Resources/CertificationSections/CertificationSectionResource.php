@@ -7,7 +7,6 @@ use App\Filament\Resources\CertificationSections\Pages\EditCertificationSection;
 use App\Filament\Resources\CertificationSections\Pages\ListCertificationSections;
 use App\Filament\Resources\CertificationSections\Schemas\CertificationSectionForm;
 use App\Filament\Resources\CertificationSections\Tables\CertificationSectionsTable;
-use App\Models\CertificationSection;
 use App\Models\Certification;
 use BackedEnum;
 use Filament\Resources\Resource;

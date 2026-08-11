@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-       Schema::create('tech_stacks', function (Blueprint $table) {
+        Schema::create('tech_stacks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('icon')->nullable(); // Menyimpan path file gambar (misal: tech-stacks/laravel.png)

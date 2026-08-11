@@ -3,25 +3,40 @@
 namespace App\Livewire;
 
 use App\Models\Certification;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class CertificationsSection extends Component
 {
+    /**
+     * @var array<int, array{
+     *     id: int,
+     *     title: string,
+     *     issuer: string,
+     *     issue_date: string,
+     *     url: string,
+     *     back_url: string|null,
+     *     description: string,
+     *     credential_url: string
+     * }>
+     */
     public array $items = [];
 
-    public function mount()
+    public function mount(): void
     {
         $certifications = Certification::orderBy('sort_order', 'asc')->get();
 
         if ($certifications->isNotEmpty()) {
-            $this->items = $certifications->map(function ($cert) {
+            $this->items = $certifications->map(function (Certification $cert): array {
                 return [
                     'id' => $cert->id,
                     'title' => $cert->title,
                     'issuer' => $cert->issuer ?? 'Official Certification',
                     'issue_date' => $cert->issue_date ?? '',
-                    'url' => asset('storage/' . $cert->front_image),
-                    'back_url' => $cert->back_image ? asset('storage/' . $cert->back_image) : null,
+                    'url' => asset('storage/'.$cert->front_image),
+                    'back_url' => $cert->back_image
+                        ? asset('storage/'.$cert->back_image)
+                        : null,
                     'description' => $cert->description ?? '',
                     'credential_url' => $cert->credential_url ?? '#',
                 ];
@@ -53,7 +68,7 @@ class CertificationsSection extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('components.certifications-section');
     }

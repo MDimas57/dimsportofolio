@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class HeroSection extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'sub_title',
         'name',
@@ -21,10 +18,9 @@ class HeroSection extends Model
         'experience_years',
         'projects_completed',
         'happy_clients',
-        'bg_image', // Tambahkan ini untuk mendukung kolom bg_image
+        'bg_image',
     ];
 
-    // PENTING: Tambahkan bagian ini!
     protected $casts = [
         'highlights' => 'array',
     ];
