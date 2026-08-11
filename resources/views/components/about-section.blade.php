@@ -90,13 +90,13 @@
             </div>
 
             <!-- CTA Button -->
-            <div class="pt-2">
+            <!-- <div class="pt-2">
                 <a href="{{ $about->button_link ?? '#about' }}" 
                    class="inline-flex items-center space-x-2 border border-orange-500/80 text-orange-400 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-xl text-sm font-bold transition duration-300 shadow-lg shadow-orange-500/10">
                     <span>{{ $about->button_text ?? 'More About Me' }}</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </a>
-            </div>
+            </div> -->
         </div>
 
     </div>
