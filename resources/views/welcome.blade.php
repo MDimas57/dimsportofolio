@@ -26,6 +26,7 @@
             <livewire:services-section />
             <livewire:certifications-section />
             <livewire:project-section />
+            <livewire:contact-section />
         </main>
     </div>
 

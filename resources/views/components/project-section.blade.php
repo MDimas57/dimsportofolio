@@ -1,11 +1,11 @@
-<section id="projects" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-16 pb-12">
+<section id="projects" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-16 pb-10">
     
     <!-- Garis Pembatas Antar Section (Sama seperti Section Skills/Services) -->
     <div class="border-t border-slate-800/80 w-full mb-16"></div>
 
     <!-- Header Section (Sama persis dengan Section Skills/Services) -->
     <div class="text-center space-y-2 mb-12">
-        <span class="text-orange-500 font-semibold text-xs tracking-widest uppercase">
+        <span class="text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
             Portfolio & Projects
         </span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">

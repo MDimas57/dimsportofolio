@@ -1,5 +1,5 @@
-<!-- Container Section: Tetap presisi max-w-7xl dan px-6 md:px-16 sesuai About Me -->
-<section id="certifications" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-10 pb-16">
+<!-- Container Section -->
+<section id="achievements" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-10 pb-10">
     
     <!-- Garis Pembatas Antar Section -->
     <div class="border-t border-slate-800/80 w-full mb-16"></div>
@@ -10,108 +10,18 @@
         x-init="init()"
         class="w-full mx-auto"
     >
-        <!-- Grid Layout 2 Kolom (5 : 7) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Grid Layout 2 Kolom -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
-            <!-- KOLOM KIRI: Detail & Info Sertifikat (5 Kolom) -->
-            <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
-                
-                <!-- Badge (Gaya Minimalis Pils) -->
-                <div>
-                    <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 font-semibold tracking-wider text-[11px] uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-                        <span>Accomplishments</span>
-                    </span>
-                </div>
-
-                <!-- Main Heading (Diperkecil ukurannya) & Deskripsi -->
-                <div class="space-y-2.5">
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight" x-text="items[index]?.title || 'Certifications & Credentials'">
-                    </h2>
-                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" x-text="items[index]?.description || 'Lulus ujian sertifikasi kompetensi profesional. Klik card sertifikat di samping untuk melihat transkrip/tampilan belakang.'">
-                    </p>
-                </div>
-
-                <!-- INFO CARD MATRIX (Desain Beda dari About Me: Style Distinct Accent Cards) -->
-                <div class="space-y-2.5">
-                    
-                    <!-- Top Row: Issuer & Date (2 Kolom Layout) -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        <!-- Issuer / Organizer -->
-                        <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
-                            <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            </div>
-                            <div class="min-w-0">
-                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issuer</p>
-                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || 'Teknokrat'"></p>
-                            </div>
-                        </div>
-
-                        <!-- Issue Date -->
-                        <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
-                            <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <div class="min-w-0">
-                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issued Date</p>
-                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '2026'"></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Row: Credential No (Full Width & No Truncate Agar Nomor Kredensial Terbaca Jelas) -->
-                    <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-inner">
-                        <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <div class="min-w-0 flex-1">
-                            <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Credential ID / No.</p>
-                            <p class="text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '0003/G.121/IIa2.3/2026'"></p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- THUMBNAIL BAR -->
-                <div class="pt-1 flex flex-col space-y-2">
-                    <div class="flex items-center justify-between text-xs text-gray-400">
-                        <span class="font-medium text-[10px] uppercase tracking-wider text-slate-400">Select Certificate</span>
-                        <span class="font-mono text-xs font-bold text-orange-400" x-text="(index + 1) + ' / ' + items.length"></span>
-                    </div>
-
-                    <div
-                        x-ref="thumbnails"
-                        class="overflow-x-auto scrollbar-hide py-1"
-                        style="scrollbar-width: none; -ms-overflow-style: none;"
-                    >
-                        <div class="flex gap-2.5 items-center" style="width: fit-content;">
-                            <template x-for="(item, i) in items" :key="item.id">
-                                <button
-                                    type="button"
-                                    @click="goTo(i)"
-                                    :class="i === index 
-                                        ? 'ring-2 ring-orange-500 opacity-100 scale-105' 
-                                        : 'opacity-40 hover:opacity-80 border-slate-800'"
-                                    class="relative shrink-0 h-10 w-16 rounded-xl overflow-hidden bg-slate-950 border transition-all duration-200"
-                                >
-                                    <img
-                                        :src="item.url"
-                                        :alt="item.title"
-                                        class="w-full h-full object-cover pointer-events-none select-none"
-                                    >
-                                </button>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- 1. BADGE (Tampil di Atas pada Mode Mobile & Desktop) -->
+            <div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:hidden">
+                <span class="item-center text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
+                    <span>Achievements</span>
+                </span>
             </div>
 
-            <!-- KOLOM KANAN: Foto Sertifikat Landscape (7 Kolom - Melebar Persis) -->
-            <!-- KOLOM KANAN: Foto Sertifikat Landscape (7 Kolom) -->
-            <div class="lg:col-span-7 w-full">
-                
+            <!-- 2. FOTO SERTIFIKAT (KOLOM KANAN DI DESKTOP / DIPINDAH KE ATAS DI MOBILE) -->
+            <div class="lg:col-span-7 w-full lg:order-2">
                 <div
                     class="relative w-full overflow-hidden rounded-2xl group"
                     x-ref="container"
@@ -132,7 +42,7 @@
                                 
                                 <!-- 3D Flip Card Container -->
                                 <div 
-                                    class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[280px] rounded-2xl cursor-pointer select-none [perspective:1000px] overflow-hidden bg-slate-950"
+                                    class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[250px] sm:min-h-[280px] rounded-2xl cursor-pointer select-none [perspective:1000px] overflow-hidden bg-slate-950"
                                     @click="toggleFlip(i)"
                                 >
                                     <!-- Flip Inner Wrapper -->
@@ -199,7 +109,7 @@
                         :class="index === 0
                             ? 'opacity-0 pointer-events-none'
                             : 'bg-slate-900/80 hover:bg-orange-500 text-white opacity-90 hover:opacity-100'"
-                        class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
+                        class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
                     >
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
@@ -214,12 +124,103 @@
                         :class="index === items.length - 1
                             ? 'opacity-0 pointer-events-none'
                             : 'bg-slate-900/80 hover:bg-orange-500 text-white opacity-90 hover:opacity-100'"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
+                        class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
                     >
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
+                </div>
+            </div>
+
+            <!-- KOLOM INFO & THUMBNAILS (KOLOM KIRI DI DESKTOP / BERADA DI BAWAH FOTO DI MOBILE) -->
+            <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:order-1">
+                
+                <!-- Badge versi Desktop -->
+                <div class="hidden lg:block">
+                    <span class="text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
+                        <span>Achievements</span>
+                    </span>
+                </div>
+
+                <!-- 3. SELECT CERTIFICATE THUMBNAILS (MODE MOBILE: RATA TENGAH & POSISI DULUAN) -->
+                <div class="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-left">
+                    <div class="flex items-center justify-between w-full text-xs text-gray-400">
+                        <span class="font-medium text-[10px] uppercase tracking-wider text-slate-400">Select Certificate</span>
+                        <span class="font-mono text-xs font-bold text-orange-400" x-text="(index + 1) + ' / ' + items.length"></span>
+                    </div>
+
+                    <div
+                        x-ref="thumbnails"
+                        class="w-full overflow-x-auto scrollbar-hide py-1 flex justify-center lg:justify-start"
+                        style="scrollbar-width: none; -ms-overflow-style: none;"
+                    >
+                        <div class="flex gap-2.5 items-center mx-auto lg:mx-0" style="width: fit-content;">
+                            <template x-for="(item, i) in items" :key="item.id">
+                                <button
+                                    type="button"
+                                    @click="goTo(i)"
+                                    :class="i === index 
+                                        ? 'ring-2 ring-orange-500 opacity-100 scale-105' 
+                                        : 'opacity-40 hover:opacity-80 border-slate-800'"
+                                    class="relative shrink-0 h-10 w-16 rounded-xl overflow-hidden bg-slate-950 border transition-all duration-200"
+                                >
+                                    <img
+                                        :src="item.url"
+                                        :alt="item.title"
+                                        class="w-full h-full object-cover pointer-events-none select-none"
+                                    >
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. JUDUL (TITLE) -->
+                <div class="space-y-2.5 text-center lg:text-left">
+                    <h2 class="text-xl sm:text-2xl lg:text-4xl font-bold text-white leading-snug tracking-tight" x-text="items[index]?.title || 'Certifications & Credentials'">
+                    </h2>
+                </div>
+
+                <!-- 5. INFO CARD MATRIX -->
+                <div class="space-y-2.5">
+                    
+                    <!-- Top Row: Issuer & Date -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <!-- Issuer / Organizer -->
+                        <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
+                            <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </div>
+                            <div class="min-w-0 text-left">
+                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issuer</p>
+                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || 'Teknokrat'"></p>
+                            </div>
+                        </div>
+
+                        <!-- Issue Date -->
+                        <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
+                            <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div class="min-w-0 text-left">
+                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issued Date</p>
+                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '2026'"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row: Credential No -->
+                    <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-inner">
+                        <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="min-w-0 flex-1 text-left">
+                            <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Credential ID / No.</p>
+                            <p class="text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '0003/G.121/IIa2.3/2026'"></p>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

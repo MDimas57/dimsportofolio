@@ -5,7 +5,7 @@
 
     <!-- Header Section -->
     <div class="text-center space-y-2 mb-12">
-        <span class="text-orange-500 font-semibold text-xs tracking-widest uppercase">
+        <span class="text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
             Skills & Services
         </span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">

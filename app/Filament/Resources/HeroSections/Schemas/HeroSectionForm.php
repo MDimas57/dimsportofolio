@@ -61,6 +61,15 @@ class HeroSectionForm
                     ->image()
                     ->imageEditor(),
 
+                // Komponen Upload Background (Gambar / GIF)
+                FileUpload::make('bg_image')
+                    ->label('Background Hero (Gambar / GIF)')
+                    ->directory('hero-bg')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+                    ->maxSize(10240)
+                    ->helperText('Unggah gambar atau animasi GIF (Maksimal 10MB)')
+                    ->default(null),
+
                 TextInput::make('experience_years')
                     ->label('IPK')
                     ->placeholder('3+')

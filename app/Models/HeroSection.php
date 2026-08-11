@@ -21,6 +21,7 @@ class HeroSection extends Model
         'experience_years',
         'projects_completed',
         'happy_clients',
+        'bg_image', // Tambahkan ini untuk mendukung kolom bg_image
     ];
 
     // PENTING: Tambahkan bagian ini!
