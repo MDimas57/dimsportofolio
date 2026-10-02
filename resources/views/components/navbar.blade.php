@@ -1,6 +1,9 @@
 @props(['hero' => null])
 
 @php
+    // Fallback aman jika $siteSetting dari ViewComposer belum terdefinisi
+    $setting = $siteSetting ?? \App\Models\SiteSetting::first();
+
     $links = [
         'home' => 'Home',
         'about' => 'About',
@@ -9,6 +12,9 @@
         'projects' => 'Projects',
         'contact' => 'Contact',
     ];
+
+    $displayName = $setting?->site_name ?? $hero?->name ?? 'DimszProject';
+    $logoUrl = $setting?->logo_url;
 @endphp
 
 <nav
@@ -19,15 +25,13 @@
         init() {
             this.updateActiveSection();
 
-            // Update ketika user melakukan scroll
             window.addEventListener('scroll', () => {
                 this.updateActiveSection();
             }, { passive: true });
 
-            // Update ketika ukuran layar berubah
             window.addEventListener('resize', () => {
                 this.updateActiveSection();
-                if (window.innerWidth >= 768) {
+                if (window.innerWidth >= 1024) {
                     this.mobileMenuOpen = false;
                 }
             }, { passive: true });
@@ -36,9 +40,7 @@
         updateActiveSection() {
             const sections = [...document.querySelectorAll('section[id]')];
 
-            if (!sections.length) {
-                return;
-            }
+            if (!sections.length) return;
 
             const navbarHeight = 80;
             const scrollPosition = window.scrollY + navbarHeight + 20;
@@ -47,7 +49,6 @@
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-
                 if (scrollPosition >= sectionTop) {
                     currentSection = section.id;
                 }
@@ -66,19 +67,13 @@
         scrollToSection(id) {
             const section = document.getElementById(id);
 
-            if (!section) {
-                return;
-            }
+            if (!section) return;
 
             this.activeSection = id;
             this.mobileMenuOpen = false;
 
             const navbarHeight = 80;
-
-            const targetPosition =
-                section.getBoundingClientRect().top +
-                window.scrollY -
-                navbarHeight;
+            const targetPosition = section.getBoundingClientRect().top + window.scrollY - navbarHeight;
 
             window.scrollTo({
                 top: targetPosition,
@@ -87,32 +82,45 @@
         }
     }"
     class="fixed top-0 left-0 right-0 z-50
-           bg-gray-900/90 backdrop-blur-md
+           bg-gray-950/90 backdrop-blur-md
            border-b border-gray-800/60
            transition-all duration-300"
 >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 py-4 flex justify-between items-center w-full">
+    <!-- Padding disesuaikan: px-4 sm:px-6 lg:px-8 agar tidak overflow di layar sedang -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex justify-between items-center w-full">
 
-        <!-- Logo & Nama -->
-        <div class="flex items-center space-x-3 shrink-0">
-            <!-- Icon Initial/Logo (Tetap Tampil) -->
-            <div
-                class="bg-gradient-to-tr from-orange-600 to-amber-500
-                       text-black font-extrabold
-                       px-3 py-1.5 rounded-lg text-base sm:text-lg
-                       shadow-lg"
-            >
-                {{ strtoupper(substr($hero->name ?? 'MD', 0, 2)) }}
-            </div>
+        <!-- Logo Utama Saja (Responsif: h-10 sm:h-12 lg:h-14) -->
+        <a href="#home" @click.prevent="scrollToSection('home')" class="flex items-center shrink-0 group">
+            @if ($logoUrl)
+                <!-- Logo Gambar dari Admin Filament -->
+                <img 
+                    src="{{ $logoUrl }}" 
+                    alt="{{ $displayName }}" 
+                    class="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                >
+            @else
+                <!-- Fallback Icon DP Monogram SVG -->
+                <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center shrink-0">
+                    <svg class="w-full h-full drop-shadow-[0_0_18px_rgba(249,115,22,0.5)] transition-transform duration-200 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="dimszOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#F97316" />
+                                <stop offset="100%" stop-color="#D97706" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Outer D / P Shape -->
+                        <path d="M 20 15 L 60 15 C 80 15 90 30 85 50 C 80 70 65 85 45 85 L 20 85 Z" fill="url(#dimszOrangeGrad)" />
+                        <!-- Inner Cutout / P Loop -->
+                        <path d="M 35 32 L 52 32 C 64 32 70 40 67 50 C 64 60 56 66 45 66 L 35 66 Z" fill="#030712" />
+                        <!-- Forward Arrow Accent -->
+                        <path d="M 20 50 L 50 50 L 35 68 Z" fill="#F97316" />
+                    </svg>
+                </div>
+            @endif
+        </a>
 
-            <!-- Nama disembunyikan di Mobile (hidden), Tampil di Tablet/Desktop (sm:inline) -->
-            <span class="hidden sm:inline text-lg sm:text-xl font-bold tracking-wide text-white">
-                {{ $hero->name ?? 'M Dimas Stiyawan' }}
-            </span>
-        </div>
-
-        <!-- Desktop Nav Links -->
-        <ul class="hidden md:flex space-x-8 text-gray-400 font-medium text-sm">
+        <!-- Desktop Nav Links (Hanya tampil di breakpoint lg: / 1024px ke atas) -->
+        <ul class="hidden lg:flex items-center space-x-5 xl:space-x-8 text-gray-400 font-medium text-sm">
             @foreach ($links as $id => $label)
                 <li>
                     <a
@@ -123,7 +131,7 @@
                                 ? 'text-orange-500 border-b-2 border-orange-500 font-semibold'
                                 : 'hover:text-white border-b-2 border-transparent'
                         "
-                        class="pb-1 transition-all duration-200"
+                        class="pb-1 transition-all duration-200 whitespace-nowrap"
                     >
                         {{ $label }}
                     </a>
@@ -132,8 +140,7 @@
         </ul>
 
         <!-- Desktop CTA + Mobile Hamburger Button Container -->
-        <div class="flex items-center space-x-3">
-            <!-- CTA Let's Talk (Desktop & Tablet) -->
+        <div class="flex items-center space-x-3 shrink-0">
             <a
                 href="#contact"
                 @click.prevent="scrollToSection('contact')"
@@ -141,11 +148,11 @@
                        from-orange-500 to-amber-600
                        hover:from-orange-600 hover:to-amber-700
                        text-white
-                       px-4 sm:px-5 py-2 sm:py-2.5
+                       px-4 py-2 sm:px-5 sm:py-2.5
                        rounded-full
                        items-center space-x-2
                        text-xs sm:text-sm font-semibold
-                       transition
+                       transition duration-200
                        shadow-lg shadow-orange-500/20 shrink-0"
             >
                 <span>Let's Talk</span>
@@ -154,18 +161,16 @@
                 </svg>
             </a>
 
-            <!-- Mobile Hamburger Button -->
+            <!-- Mobile / Tablet Hamburger Button (Tampil sampai breakpoint lg: / 1024px) -->
             <button
                 @click="mobileMenuOpen = !mobileMenuOpen"
                 type="button"
-                class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 focus:outline-none"
+                class="lg:hidden text-gray-300 hover:text-white p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 focus:outline-none"
                 aria-label="Toggle Menu"
             >
-                <!-- Hamburger Icon -->
                 <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
-                <!-- Close Icon -->
                 <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -174,7 +179,7 @@
 
     </div>
 
-    <!-- Mobile Dropdown Menu -->
+    <!-- Mobile Dropdown Menu (Untuk Mobile & Tablet < 1024px) -->
     <div
         x-show="mobileMenuOpen"
         x-transition:enter="transition ease-out duration-200"
@@ -185,7 +190,7 @@
         x-transition:leave-end="opacity-0 -translate-y-4"
         @click.away="mobileMenuOpen = false"
         x-cloak
-        class="md:hidden bg-gray-900/95 border-b border-gray-800/80 px-6 pt-2 pb-6 space-y-3"
+        class="lg:hidden bg-gray-950/95 border-b border-gray-800/80 px-6 pt-2 pb-6 space-y-3"
     >
         @foreach ($links as $id => $label)
             <a
@@ -202,7 +207,6 @@
             </a>
         @endforeach
 
-        <!-- Mobile CTA Inside Menu -->
         <div class="pt-2 sm:hidden">
             <a
                 href="#contact"
