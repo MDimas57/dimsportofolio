@@ -1,9 +1,28 @@
-<section id="home" 
-         class="relative w-full py-12 md:py-20 overflow-hidden"
-         style="@if(!empty($hero->bg_image)) background-image: url('{{ asset('storage/' . $hero->bg_image) }}'); background-size: cover; background-position: center; @endif">
+<section id="home" class="relative w-full py-12 md:py-20 overflow-hidden">
     
-    <!-- Dark Overlay -->
+    <!-- Dynamic Background Handler (Gambar / GIF / Video MP4) -->
     @if(!empty($hero->bg_image))
+        @php
+            $bgExtension = strtolower(pathinfo($hero->bg_image, PATHINFO_EXTENSION));
+            $isVideo = in_array($bgExtension, ['mp4', 'mov', 'webm', 'ogg']);
+        @endphp
+
+        @if($isVideo)
+            <!-- Video Background (Autoplay, Loop, Muted layaknya GIF) -->
+            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+                <video autoplay loop muted playsinline class="w-full h-full object-cover object-center pointer-events-none">
+                    <source src="{{ asset('storage/' . $hero->bg_image) }}" type="video/{{ $bgExtension === 'mov' ? 'quicktime' : $bgExtension }}">
+                    Browser Anda tidak mendukung pemutaran video.
+                </video>
+            </div>
+        @else
+            <!-- Image / GIF Background -->
+            <div class="absolute inset-0 w-full h-full z-0 bg-cover bg-center bg-no-repeat"
+                 style="background-image: url('{{ asset('storage/' . $hero->bg_image) }}');">
+            </div>
+        @endif
+
+        <!-- Dark Overlay (Agar teks tetap mudah terbaca di atas video/gambar) -->
         <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px] z-0"></div>
     @endif
 
