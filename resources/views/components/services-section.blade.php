@@ -5,7 +5,7 @@
 
     <!-- Header Section -->
     <div class="text-center space-y-2 mb-12">
-        <span class="text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
+        <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
             Skills & Services
         </span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
@@ -16,8 +16,8 @@
     <!-- Cards Layout (Flexbox Rata Tengah) -->
     <div class="flex flex-wrap justify-center gap-4">
         @foreach($services as $item)
-            <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(16.666%-1rem)] min-w-[180px] bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 flex flex-col items-center text-center hover:border-orange-500/50 hover:bg-slate-900/90 transition-all duration-300 group shadow-lg">
-                <div class="p-3.5 rounded-xl bg-orange-500/10 text-orange-500 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(16.666%-1rem)] min-w-[180px] bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 flex flex-col items-center text-center hover:border-blue-500/50 hover:bg-slate-900/90 transition-all duration-300 group shadow-lg">
+                <div class="p-3.5 rounded-xl bg-blue-500/10 text-blue-500 mb-5 group-hover:scale-110 transition-transform duration-300">
                     @if($item->icon)
                         {!! $item->icon !!}
                     @else

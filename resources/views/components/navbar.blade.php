@@ -86,7 +86,7 @@
            border-b border-gray-800/60
            transition-all duration-300"
 >
-    <!-- Padding disesuaikan: px-4 sm:px-6 lg:px-8 agar tidak overflow di layar sedang -->
+    <!-- Container Responsif (px-4 sm:px-6 lg:px-8) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex justify-between items-center w-full">
 
         <!-- Logo Utama Saja (Responsif: h-10 sm:h-12 lg:h-14) -->
@@ -99,27 +99,28 @@
                     class="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
                 >
             @else
-                <!-- Fallback Icon DP Monogram SVG -->
+                <!-- Fallback Icon DP Monogram SVG Warna Biru -->
                 <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center shrink-0">
-                    <svg class="w-full h-full drop-shadow-[0_0_18px_rgba(249,115,22,0.5)] transition-transform duration-200 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-full h-full drop-shadow-[0_0_18px_rgba(14,165,233,0.5)] transition-transform duration-200 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="dimszOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#F97316" />
-                                <stop offset="100%" stop-color="#D97706" />
+                            <linearGradient id="dimszBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00D2FF" />
+                                <stop offset="50%" stop-color="#0066FF" />
+                                <stop offset="100%" stop-color="#0033CC" />
                             </linearGradient>
                         </defs>
                         <!-- Outer D / P Shape -->
-                        <path d="M 20 15 L 60 15 C 80 15 90 30 85 50 C 80 70 65 85 45 85 L 20 85 Z" fill="url(#dimszOrangeGrad)" />
+                        <path d="M 20 15 L 60 15 C 80 15 90 30 85 50 C 80 70 65 85 45 85 L 20 85 Z" fill="url(#dimszBlueGrad)" />
                         <!-- Inner Cutout / P Loop -->
                         <path d="M 35 32 L 52 32 C 64 32 70 40 67 50 C 64 60 56 66 45 66 L 35 66 Z" fill="#030712" />
                         <!-- Forward Arrow Accent -->
-                        <path d="M 20 50 L 50 50 L 35 68 Z" fill="#F97316" />
+                        <path d="M 20 50 L 50 50 L 35 68 Z" fill="#00D2FF" />
                     </svg>
                 </div>
             @endif
         </a>
 
-        <!-- Desktop Nav Links (Hanya tampil di breakpoint lg: / 1024px ke atas) -->
+        <!-- Desktop Nav Links (Kembali ke Warna Cyan/Biru) -->
         <ul class="hidden lg:flex items-center space-x-5 xl:space-x-8 text-gray-400 font-medium text-sm">
             @foreach ($links as $id => $label)
                 <li>
@@ -128,7 +129,7 @@
                         @click.prevent="scrollToSection('{{ $id }}')"
                         :class="
                             activeSection === '{{ $id }}'
-                                ? 'text-orange-500 border-b-2 border-orange-500 font-semibold'
+                                ? 'text-cyan-400 border-b-2 border-cyan-400 font-semibold'
                                 : 'hover:text-white border-b-2 border-transparent'
                         "
                         class="pb-1 transition-all duration-200 whitespace-nowrap"
@@ -145,15 +146,15 @@
                 href="#contact"
                 @click.prevent="scrollToSection('contact')"
                 class="hidden sm:flex bg-gradient-to-r
-                       from-orange-500 to-amber-600
-                       hover:from-orange-600 hover:to-amber-700
+                       from-cyan-500 via-blue-600 to-blue-700
+                       hover:from-cyan-400 hover:to-blue-600
                        text-white
                        px-4 py-2 sm:px-5 sm:py-2.5
                        rounded-full
                        items-center space-x-2
                        text-xs sm:text-sm font-semibold
                        transition duration-200
-                       shadow-lg shadow-orange-500/20 shrink-0"
+                       shadow-lg shadow-cyan-500/20 shrink-0"
             >
                 <span>Let's Talk</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,7 +199,7 @@
                 @click.prevent="scrollToSection('{{ $id }}')"
                 :class="
                     activeSection === '{{ $id }}'
-                        ? 'text-orange-500 bg-orange-500/10 border-l-4 border-orange-500 font-semibold pl-3'
+                        ? 'text-cyan-400 bg-cyan-500/10 border-l-4 border-cyan-400 font-semibold pl-3'
                         : 'text-gray-300 hover:text-white hover:bg-gray-800/50 pl-3'
                 "
                 class="block py-2.5 rounded-r-lg text-base font-medium transition-all"
@@ -211,7 +212,7 @@
             <a
                 href="#contact"
                 @click.prevent="scrollToSection('contact')"
-                class="w-full bg-gradient-to-r from-orange-500 to-amber-600 text-white py-3 rounded-xl flex items-center justify-center space-x-2 font-semibold text-sm shadow-lg shadow-orange-500/20"
+                class="w-full bg-gradient-to-r from-cyan-500 via-blue-600 to-blue-700 text-white py-3 rounded-xl flex items-center justify-center space-x-2 font-semibold text-sm shadow-lg shadow-cyan-500/20"
             >
                 <span>Let's Talk</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

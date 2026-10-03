@@ -6,21 +6,21 @@
 
     <!-- Container Utama Alpine.js -->
     <div 
-        x-data="certificationCarousel(@js($items))"
+        x-data="certificationCarousel({{ json_encode($items) }})"
         x-init="init()"
         class="w-full mx-auto"
     >
         <!-- Grid Layout 2 Kolom -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
-            <!-- 1. BADGE (Tampil di Atas pada Mode Mobile & Desktop) -->
+            <!-- 1. BADGE (Tampil di Atas pada Mode Mobile) -->
             <div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:hidden">
-                <span class="item-center text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
-                    <span>Achievements</span>
+                <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
+                    Achievements
                 </span>
             </div>
 
-            <!-- 2. FOTO SERTIFIKAT (KOLOM KANAN DI DESKTOP / DIPINDAH KE ATAS DI MOBILE) -->
+            <!-- 2. FOTO SERTIFIKAT (KOLOM KANAN DI DESKTOP / ATAS DI MOBILE) -->
             <div class="lg:col-span-7 w-full lg:order-2">
                 <div
                     class="relative w-full overflow-hidden rounded-2xl group"
@@ -33,11 +33,11 @@
                     @touchend.window="dragEnd($event)"
                 >
                     <div
-                        class="flex"
-                        :class="!isDragging && 'transition-transform duration-300 ease-out'"
-                        :style="`transform: translateX(${currentTranslate}px); cursor: ${isDragging ? 'grabbing' : 'grab'}`"
+                        class="flex transition-transform ease-out"
+                        :class="isDragging ? 'duration-0' : 'duration-300'"
+                        :style="`transform: translateX(${currentTranslate}px); cursor: ${isDragging ? 'grabbing' : 'grab'};`"
                     >
-                        <template x-for="(item, i) in items" :key="item.id">
+                        <template x-for="(item, i) in items" :key="item.id || i">
                             <div class="shrink-0 w-full">
                                 
                                 <!-- 3D Flip Card Container -->
@@ -59,7 +59,7 @@
                                                 draggable="false"
                                             >
                                             <!-- Flip Hint Badge -->
-                                            <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-orange-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
+                                            <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                                 <span>Klik untuk Balik</span>
                                             </div>
@@ -78,17 +78,17 @@
 
                                             <template x-if="!item.back_url">
                                                 <div class="max-w-md p-6 space-y-3 text-center">
-                                                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center justify-center mx-auto">
+                                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto">
                                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                                     </div>
                                                     <h4 class="text-white font-bold text-base sm:text-lg line-clamp-2" x-text="item.title"></h4>
-                                                    <p class="text-xs text-orange-400 font-medium" x-text="'Issued by: ' + item.issuer + (item.issue_date ? ' (' + item.issue_date + ')' : '')"></p>
+                                                    <p class="text-xs text-blue-400 font-medium" x-text="'Issued by: ' + (item.issuer || '-') + (item.issue_date ? ' (' + item.issue_date + ')' : '')"></p>
                                                     <p class="text-gray-300 text-xs leading-relaxed line-clamp-3" x-text="item.description || 'Verified authentic credential certificate record.'"></p>
                                                 </div>
                                             </template>
 
                                             <!-- Flip Back Hint Badge -->
-                                            <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-orange-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
+                                            <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                                 <span>Klik untuk Depan</span>
                                             </div>
@@ -108,7 +108,7 @@
                         @click="goTo(index - 1)"
                         :class="index === 0
                             ? 'opacity-0 pointer-events-none'
-                            : 'bg-slate-900/80 hover:bg-orange-500 text-white opacity-90 hover:opacity-100'"
+                            : 'bg-slate-900/80 hover:bg-blue-600 text-white opacity-90 hover:opacity-100'"
                         class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
                     >
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@
                         @click="goTo(index + 1)"
                         :class="index === items.length - 1
                             ? 'opacity-0 pointer-events-none'
-                            : 'bg-slate-900/80 hover:bg-orange-500 text-white opacity-90 hover:opacity-100'"
+                            : 'bg-slate-900/80 hover:bg-blue-600 text-white opacity-90 hover:opacity-100'"
                         class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
                     >
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,21 +133,21 @@
                 </div>
             </div>
 
-            <!-- KOLOM INFO & THUMBNAILS (KOLOM KIRI DI DESKTOP / BERADA DI BAWAH FOTO DI MOBILE) -->
+            <!-- KOLOM INFO & THUMBNAILS (KOLOM KIRI DI DESKTOP / BAWAH FOTO DI MOBILE) -->
             <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:order-1">
                 
                 <!-- Badge versi Desktop -->
                 <div class="hidden lg:block">
-                    <span class="text-orange-500 font-bold tracking-widest text-xs uppercase border-b-2 border-orange-500 pb-1 inline-block">
-                        <span>Achievements</span>
+                    <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
+                        Achievements
                     </span>
                 </div>
 
-                <!-- 3. SELECT CERTIFICATE THUMBNAILS (MODE MOBILE: RATA TENGAH & POSISI DULUAN) -->
+                <!-- SELECT CERTIFICATE THUMBNAILS -->
                 <div class="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-left">
                     <div class="flex items-center justify-between w-full text-xs text-gray-400">
                         <span class="font-medium text-[10px] uppercase tracking-wider text-slate-400">Select Certificate</span>
-                        <span class="font-mono text-xs font-bold text-orange-400" x-text="(index + 1) + ' / ' + items.length"></span>
+                        <span class="font-mono text-xs font-bold text-blue-400" x-text="(items.length > 0 ? index + 1 : 0) + ' / ' + items.length"></span>
                     </div>
 
                     <div
@@ -156,12 +156,12 @@
                         style="scrollbar-width: none; -ms-overflow-style: none;"
                     >
                         <div class="flex gap-2.5 items-center mx-auto lg:mx-0" style="width: fit-content;">
-                            <template x-for="(item, i) in items" :key="item.id">
+                            <template x-for="(item, i) in items" :key="item.id || i">
                                 <button
                                     type="button"
                                     @click="goTo(i)"
                                     :class="i === index 
-                                        ? 'ring-2 ring-orange-500 opacity-100 scale-105' 
+                                        ? 'ring-2 ring-blue-500 opacity-100 scale-105' 
                                         : 'opacity-40 hover:opacity-80 border-slate-800'"
                                     class="relative shrink-0 h-10 w-16 rounded-xl overflow-hidden bg-slate-950 border transition-all duration-200"
                                 >
@@ -176,48 +176,48 @@
                     </div>
                 </div>
 
-                <!-- 4. JUDUL (TITLE) -->
+                <!-- JUDUL (TITLE) -->
                 <div class="space-y-2.5 text-center lg:text-left">
                     <h2 class="text-xl sm:text-2xl lg:text-4xl font-bold text-white leading-snug tracking-tight" x-text="items[index]?.title || 'Certifications & Credentials'">
                     </h2>
                 </div>
 
-                <!-- 5. INFO CARD MATRIX -->
+                <!-- INFO CARD MATRIX -->
                 <div class="space-y-2.5">
                     
                     <!-- Top Row: Issuer & Date -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <!-- Issuer / Organizer -->
-                        <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
-                            <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
+                        <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
+                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                             </div>
                             <div class="min-w-0 text-left">
                                 <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issuer</p>
-                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || 'Teknokrat'"></p>
+                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || '-'"></p>
                             </div>
                         </div>
 
                         <!-- Issue Date -->
-                        <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
-                            <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
+                        <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
+                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             </div>
                             <div class="min-w-0 text-left">
                                 <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issued Date</p>
-                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '2026'"></p>
+                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '-'"></p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Bottom Row: Credential No -->
-                    <div class="bg-slate-950/70 border-l-2 border-orange-500 border-y border-r border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-inner">
-                        <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400 shrink-0">
+                    <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-inner">
+                        <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div class="min-w-0 flex-1 text-left">
                             <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Credential ID / No.</p>
-                            <p class="text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '0003/G.121/IIa2.3/2026'"></p>
+                            <p class="text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '-'"></p>
                         </div>
                     </div>
 
@@ -236,9 +236,9 @@
 </style>
 
 <script>
-    function certificationCarousel(items) {
+    function certificationCarousel(items = []) {
         return {
-            items,
+            items: Array.isArray(items) ? items : [],
             index: 0,
             isDragging: false,
             startX: 0,
@@ -261,7 +261,7 @@
             },
 
             containerWidth() {
-                return this.$refs.container?.offsetWidth || 1;
+                return this.$refs.container?.offsetWidth || 0;
             },
 
             updateTranslate() {
@@ -273,6 +273,7 @@
             },
 
             dragStart(e) {
+                if (this.items.length <= 1) return;
                 this.isDragging = true;
                 this.startX = this.getClientX(e);
                 this.dragOffset = 0;
@@ -291,15 +292,15 @@
                 const width = this.containerWidth();
                 let newIndex = this.index;
 
-                if (Math.abs(this.dragOffset) > width * 0.2) {
+                if (Math.abs(this.dragOffset) > width * 0.15) {
                     newIndex = this.dragOffset > 0 ? this.index - 1 : this.index + 1;
                 }
 
-                newIndex = Math.max(0, Math.min(this.items.length - 1, newIndex));
                 this.goTo(newIndex);
             },
 
             goTo(i) {
+                if (this.items.length === 0) return;
                 this.index = Math.max(0, Math.min(this.items.length - 1, i));
                 this.dragOffset = 0;
                 this.updateTranslate();
@@ -310,11 +311,15 @@
                 this.$nextTick(() => {
                     const el = this.$refs.thumbnails;
                     if (!el) return;
-                    
-                    const thumbWidth = 70;
-                    const scrollPosition = (this.index * thumbWidth) - (el.offsetWidth / 2) + (thumbWidth / 2);
 
-                    el.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                    const activeThumb = el.querySelectorAll('button')[this.index];
+                    if (activeThumb) {
+                        activeThumb.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'center'
+                        });
+                    }
                 });
             },
         };

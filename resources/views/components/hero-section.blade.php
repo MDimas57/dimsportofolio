@@ -15,7 +15,7 @@
             
             <!-- 1. Sub-title & Title Header -->
             <div class="space-y-4 text-center lg:text-left">
-                <span class="text-orange-500 font-semibold tracking-widest text-xs uppercase bg-orange-500/10 px-3.5 py-1.5 rounded-full border border-orange-500/20 inline-block">
+                <span class="text-cyan-400 font-semibold tracking-widest text-xs uppercase bg-cyan-500/10 px-3.5 py-1.5 rounded-full border border-cyan-500/20 inline-block">
                     {{ $hero->sub_title ?? 'SOFTWARE DEVELOPER' }}
                 </span>
 
@@ -50,7 +50,7 @@
                                         }
                                     }
                                 }"
-                                class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-500 to-yellow-500 border-r-4 border-orange-500"
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-300 border-r-4 border-cyan-400"
                                 x-text="text">
                             </span>
                         </span>
@@ -76,17 +76,17 @@
                     <!-- Floating Stats Card (Mobile) -->
                     <div class="w-full -mt-6 z-10 bg-slate-900/90 backdrop-blur-md border border-slate-800/80 p-3.5 rounded-2xl flex justify-around text-center shadow-xl">
                         <div>
-                            <h4 class="text-orange-500 text-lg font-black">{{ $hero->experience_years ?? '3+' }}</h4>
+                            <h4 class="text-cyan-400 text-lg font-black">{{ $hero->experience_years ?? '3+' }}</h4>
                             <p class="text-[10px] text-gray-400 font-medium">Experience</p>
                         </div>
                         <div class="border-r border-slate-800/80"></div>
                         <div>
-                            <h4 class="text-orange-500 text-lg font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
+                            <h4 class="text-cyan-400 text-lg font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
                             <p class="text-[10px] text-gray-400 font-medium">Projects</p>
                         </div>
                         <div class="border-r border-slate-800/80"></div>
                         <div>
-                            <h4 class="text-orange-500 text-lg font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
+                            <h4 class="text-cyan-400 text-lg font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
                             <p class="text-[10px] text-gray-400 font-medium">Certificates</p>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="flex flex-wrap justify-center lg:justify-start gap-2.5 pt-2">
                         @foreach($highlights as $highlight)
                             <div class="flex items-center space-x-2 text-xs md:text-sm text-gray-300 bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl backdrop-blur-sm">
-                                <span class="text-orange-500">❖</span>
+                                <span class="text-cyan-400">❖</span>
                                 <span>{{ $highlight }}</span>
                             </div>
                         @endforeach
@@ -118,13 +118,13 @@
 
             <!-- 5. Buttons CTA -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2">
-                <a href="{{ $hero->cta_primary_link ?? '#projects' }}" class="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-orange-500/20 transition">
+                <a href="{{ $hero->cta_primary_link ?? '#projects' }}" class="bg-gradient-to-r from-cyan-500 via-blue-600 to-blue-700 hover:from-cyan-400 hover:to-blue-600 text-white px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-cyan-500/20 transition">
                     <span>{{ $hero->cta_primary_text ?? 'View My Work' }}</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
 
                 @if(!empty($hero->cv_file_path))
-                    <a href="{{ asset('storage/' . $hero->cv_file_path) }}" target="_blank" class="bg-slate-900/90 border border-slate-700/80 hover:bg-slate-800 px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 transition">
+                    <a href="{{ asset('storage/' . $hero->cv_file_path) }}" target="_blank" class="bg-slate-900/90 border border-slate-700/80 hover:bg-slate-800 text-gray-200 px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 transition">
                         <span>Download CV</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     </a>
@@ -151,17 +151,17 @@
                 <!-- Floating Stats Card (Desktop) -->
                 <div class="w-[95%] -mt-6 sm:-mt-8 z-10 bg-slate-900/80 backdrop-blur-md border border-slate-800/80 p-4 rounded-2xl flex justify-around text-center shadow-2xl shadow-black/50">
                     <div>
-                        <h4 class="text-orange-500 text-xl sm:text-2xl font-black">{{ $hero->experience_years ?? '3+' }}</h4>
+                        <h4 class="text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->experience_years ?? '3+' }}</h4>
                         <p class="text-[11px] text-gray-400 font-medium">Experience</p>
                     </div>
                     <div class="border-r border-slate-800/80"></div>
                     <div>
-                        <h4 class="text-orange-500 text-xl sm:text-2xl font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
+                        <h4 class="text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
                         <p class="text-[11px] text-gray-400 font-medium">Projects Completed</p>
                     </div>
                     <div class="border-r border-slate-800/80"></div>
                     <div>
-                        <h4 class="text-orange-500 text-xl sm:text-2xl font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
+                        <h4 class="text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
                         <p class="text-[11px] text-gray-400 font-medium">Certifications</p>
                     </div>
                 </div>
