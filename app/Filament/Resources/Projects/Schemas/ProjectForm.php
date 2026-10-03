@@ -9,7 +9,12 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Format;
+use Intervention\Image\ImageManager;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ProjectForm
 {
@@ -35,7 +40,27 @@ class ProjectForm
                     ->image()
                     ->directory('projects')
                     ->imageEditor()
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                        // 1. Inisialisasi ImageManager dengan Driver GD
+                        $manager = ImageManager::usingDriver(Driver::class);
+
+                        // 2. Baca file dari temporary path menggunakan decodePath() (API v4)
+                        $image = $manager->decodePath($file->getRealPath());
+
+                        // 3. Konversi ke format WebP menggunakan encodeUsingFormat() (API v4)
+                        $encoded = $image->encodeUsingFormat(Format::WEBP, quality: 80);
+
+                        // 4. Generate nama file unik ber-ekstensi .webp
+                        $filename = Str::random(40) . '.webp';
+                        $path = 'projects/' . $filename;
+
+                        // 5. Simpan file hasil konversi ke storage public
+                        Storage::disk('public')->put($path, (string) $encoded);
+
+                        // 6. Kembalikan path untuk disimpan ke database
+                        return $path;
+                    }),
 
                 RichEditor::make('description')
                     ->label('Deskripsi')
