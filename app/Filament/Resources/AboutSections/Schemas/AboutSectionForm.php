@@ -6,6 +6,12 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Format;
+use Intervention\Image\ImageManager;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class AboutSectionForm
 {
@@ -50,7 +56,21 @@ class AboutSectionForm
                     ->label('Gambar About Me')
                     ->directory('about-images')
                     ->image()
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                        $manager = ImageManager::usingDriver(Driver::class);
+                        $image = $manager->decodePath($file->getRealPath());
+
+                        // Encode ke format WebP (Kualitas 80%)
+                        $encoded = $image->encodeUsingFormat(Format::WEBP, quality: 80);
+
+                        $filename = Str::random(40) . '.webp';
+                        $path = 'about-images/' . $filename;
+
+                        Storage::disk('public')->put($path, (string) $encoded);
+
+                        return $path;
+                    }),
 
                 TextInput::make('button_text')
                     ->label('Teks Tombol')
