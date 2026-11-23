@@ -112,18 +112,18 @@
 
         <!-- Logo Utama Saja (Responsif: h-10 sm:h-12 lg:h-14) -->
         <a href="#home" @click.prevent="scrollToSection('home')" class="relative flex items-center shrink-0 group py-1">
-            <!-- Ambient Glow Aksen di Belakang Logo agar Stand Out & Jelas di Light maupun Dark Mode -->
-            <div class="absolute -inset-1.5 sm:-inset-2 bg-gradient-to-r from-cyan-500/20 via-blue-500/15 to-indigo-500/15 dark:from-cyan-400/25 dark:via-blue-500/25 dark:to-cyan-400/15 rounded-2xl blur-md opacity-75 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
+            <!-- Ambient Glow Aksen di Belakang Logo (Hanya tampil di Light Mode, disembunyikan di Dark Mode) -->
+            <div class="dark:hidden absolute -inset-1.5 sm:-inset-2 bg-gradient-to-r from-cyan-500/20 via-blue-500/15 to-indigo-500/15 rounded-2xl blur-md opacity-75 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
 
             @if ($logoUrl)
-                <!-- Logo Gambar dari Admin Filament dengan Glow Efek -->
+                <!-- Logo Gambar dari Admin Filament -->
                 <img 
                     src="{{ $logoUrl }}" 
                     alt="{{ $displayName }}" 
                     class="relative h-10 sm:h-12 lg:h-14 w-auto object-contain logo-glow transition-transform duration-200 group-hover:scale-105"
                 >
             @else
-                <!-- Fallback Icon DP Monogram SVG Warna Biru dengan Glow Kuat -->
+                <!-- Fallback Icon DP Monogram SVG Warna Biru -->
                 <div class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center shrink-0 logo-glow">
                     <svg class="w-full h-full transition-transform duration-200 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>

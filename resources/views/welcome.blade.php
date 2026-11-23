@@ -99,7 +99,7 @@
             animation: subtlePulse 8s ease-in-out infinite;
         }
 
-        /* Logo Glow Effects agar terlihat jelas di Light & Dark Mode */
+        /* Logo Glow Effects - Aktif hanya di Mode Light agar kontras, dinonaktifkan di Mode Dark */
         .logo-glow {
             filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.75)) drop-shadow(0 1px 2px rgba(15, 23, 42, 0.35));
             transition: filter 0.3s ease, transform 0.2s ease;
@@ -107,11 +107,9 @@
         .group:hover .logo-glow {
             filter: drop-shadow(0 0 16px rgba(14, 165, 233, 0.95)) drop-shadow(0 1px 3px rgba(15, 23, 42, 0.4));
         }
-        .dark .logo-glow {
-            filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.8));
-        }
+        .dark .logo-glow,
         .dark .group:hover .logo-glow {
-            filter: drop-shadow(0 0 22px rgba(6, 182, 212, 1));
+            filter: none !important;
         }
 
         /* Animated Galaxy Cosmic Mesh Gradient Keyframes */
