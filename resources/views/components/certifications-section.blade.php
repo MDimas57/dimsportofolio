@@ -1,8 +1,8 @@
 <!-- Container Section -->
-<section id="achievements" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-10 pb-10">
+<section id="achievements" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-10 pb-10 section-reveal">
     
     <!-- Garis Pembatas Antar Section -->
-    <div class="border-t border-slate-800/80 w-full mb-16"></div>
+    <div class="border-t border-slate-200 dark:border-slate-800/80 w-full mb-16"></div>
 
     <!-- Container Utama Alpine.js -->
     <div 
@@ -13,17 +13,18 @@
         <!-- Grid Layout 2 Kolom -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
-            <!-- 1. BADGE (Tampil di Atas pada Mode Mobile) -->
+            <!-- 1. BADGE (Tampil di Atas pada Mode Mobile - DevPort Style) -->
             <div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:hidden">
-                <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
-                    Achievements
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-500/10 text-blue-600 dark:text-cyan-400 border border-blue-500/20 shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-cyan-400"></span>
+                    Achievements & Credentials
                 </span>
             </div>
 
             <!-- 2. FOTO SERTIFIKAT (KOLOM KANAN DI DESKTOP / ATAS DI MOBILE) -->
             <div class="lg:col-span-7 w-full lg:order-2">
                 <div
-                    class="relative w-full overflow-hidden rounded-2xl group"
+                    class="relative w-full overflow-hidden rounded-2xl group shadow-xl"
                     x-ref="container"
                     @mousedown="dragStart($event)"
                     @mousemove.window="dragMove($event)"
@@ -42,7 +43,7 @@
                                 
                                 <!-- 3D Flip Card Container -->
                                 <div 
-                                    class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[250px] sm:min-h-[280px] rounded-2xl cursor-pointer select-none [perspective:1000px] overflow-hidden bg-slate-950"
+                                    class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[250px] sm:min-h-[280px] rounded-2xl cursor-pointer select-none [perspective:1000px] overflow-hidden bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80"
                                     @click="toggleFlip(i)"
                                 >
                                     <!-- Flip Inner Wrapper -->
@@ -51,7 +52,7 @@
                                         :class="isFlipped[i] ? '[transform:rotateY(180deg)]' : ''"
                                     >
                                         <!-- FRONT FACE -->
-                                        <div class="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-slate-950 flex items-center justify-center overflow-hidden rounded-2xl">
+                                        <div class="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-slate-100 dark:bg-slate-950 flex items-center justify-center overflow-hidden rounded-2xl">
                                             <img
                                                 :src="item.url"
                                                 :alt="item.title"
@@ -59,14 +60,14 @@
                                                 draggable="false"
                                             >
                                             <!-- Flip Hint Badge -->
-                                            <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
+                                            <div class="absolute bottom-3 right-3 bg-white/90 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-700/60 text-blue-600 dark:text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                                 <span>Klik untuk Balik</span>
                                             </div>
                                         </div>
 
                                         <!-- BACK FACE -->
-                                        <div class="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950 flex items-center justify-center overflow-hidden rounded-2xl">
+                                        <div class="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-white dark:bg-slate-950 flex items-center justify-center overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800/80">
                                             <template x-if="item.back_url">
                                                 <img
                                                     :src="item.back_url"
@@ -78,17 +79,17 @@
 
                                             <template x-if="!item.back_url">
                                                 <div class="max-w-md p-6 space-y-3 text-center">
-                                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto">
+                                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
                                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                                     </div>
-                                                    <h4 class="text-white font-bold text-base sm:text-lg line-clamp-2" x-text="item.title"></h4>
-                                                    <p class="text-xs text-blue-400 font-medium" x-text="'Issued by: ' + (item.issuer || '-') + (item.issue_date ? ' (' + item.issue_date + ')' : '')"></p>
-                                                    <p class="text-gray-300 text-xs leading-relaxed line-clamp-3" x-text="item.description || 'Verified authentic credential certificate record.'"></p>
+                                                    <h4 class="text-slate-900 dark:text-white font-bold text-base sm:text-lg line-clamp-2" x-text="item.title"></h4>
+                                                    <p class="text-xs text-blue-600 dark:text-blue-400 font-medium" x-text="'Issued by: ' + (item.issuer || '-') + (item.issue_date ? ' (' + item.issue_date + ')' : '')"></p>
+                                                    <p class="text-slate-600 dark:text-gray-300 text-xs leading-relaxed line-clamp-3" x-text="item.description || 'Verified authentic credential certificate record.'"></p>
                                                 </div>
                                             </template>
 
                                             <!-- Flip Back Hint Badge -->
-                                            <div class="absolute bottom-3 right-3 bg-slate-950/80 border border-slate-700/60 text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
+                                            <div class="absolute bottom-3 right-3 bg-white/90 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-700/60 text-blue-600 dark:text-blue-400 text-[10px] font-medium px-2.5 py-1 rounded-lg flex items-center space-x-1.5 backdrop-blur-md pointer-events-none shadow-md z-10">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                                 <span>Klik untuk Depan</span>
                                             </div>
@@ -108,7 +109,7 @@
                         @click="goTo(index - 1)"
                         :class="index === 0
                             ? 'opacity-0 pointer-events-none'
-                            : 'bg-slate-900/80 hover:bg-blue-600 text-white opacity-90 hover:opacity-100'"
+                            : 'bg-white/90 dark:bg-slate-900/80 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-slate-800 dark:text-white opacity-90 hover:opacity-100 border border-slate-200 dark:border-slate-700/60'"
                         class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
                     >
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +124,7 @@
                         @click="goTo(index + 1)"
                         :class="index === items.length - 1
                             ? 'opacity-0 pointer-events-none'
-                            : 'bg-slate-900/80 hover:bg-blue-600 text-white opacity-90 hover:opacity-100'"
+                            : 'bg-white/90 dark:bg-slate-900/80 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-slate-800 dark:text-white opacity-90 hover:opacity-100 border border-slate-200 dark:border-slate-700/60'"
                         class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 z-20 backdrop-blur-md shadow-lg"
                     >
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,18 +137,19 @@
             <!-- KOLOM INFO & THUMBNAILS (KOLOM KIRI DI DESKTOP / BAWAH FOTO DI MOBILE) -->
             <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:order-1">
                 
-                <!-- Badge versi Desktop -->
+                <!-- Badge versi Desktop (DevPort Style) -->
                 <div class="hidden lg:block">
-                    <span class="text-blue-500 font-bold tracking-widest text-xs uppercase border-b-2 border-blue-500 pb-1 inline-block">
-                        Achievements
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-500/10 text-blue-600 dark:text-cyan-400 border border-blue-500/20 shadow-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-cyan-400"></span>
+                        Achievements & Credentials
                     </span>
                 </div>
 
                 <!-- SELECT CERTIFICATE THUMBNAILS -->
                 <div class="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-left">
-                    <div class="flex items-center justify-between w-full text-xs text-gray-400">
-                        <span class="font-medium text-[10px] uppercase tracking-wider text-slate-400">Select Certificate</span>
-                        <span class="font-mono text-xs font-bold text-blue-400" x-text="(items.length > 0 ? index + 1 : 0) + ' / ' + items.length"></span>
+                    <div class="flex items-center justify-between w-full text-xs text-slate-500 dark:text-gray-400">
+                        <span class="font-medium text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400">Select Certificate</span>
+                        <span class="font-mono text-xs font-bold text-blue-600 dark:text-blue-400" x-text="(items.length > 0 ? index + 1 : 0) + ' / ' + items.length"></span>
                     </div>
 
                     <div
@@ -162,8 +164,8 @@
                                     @click="goTo(i)"
                                     :class="i === index 
                                         ? 'ring-2 ring-blue-500 opacity-100 scale-105' 
-                                        : 'opacity-40 hover:opacity-80 border-slate-800'"
-                                    class="relative shrink-0 h-10 w-16 rounded-xl overflow-hidden bg-slate-950 border transition-all duration-200"
+                                        : 'opacity-50 hover:opacity-90 border-slate-200 dark:border-slate-800'"
+                                    class="relative shrink-0 h-10 w-16 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-950 border transition-all duration-200 shadow-sm"
                                 >
                                     <img
                                         :src="item.url"
@@ -178,7 +180,7 @@
 
                 <!-- JUDUL (TITLE) -->
                 <div class="space-y-2.5 text-center lg:text-left">
-                    <h2 class="text-xl sm:text-2xl lg:text-4xl font-bold text-white leading-snug tracking-tight" x-text="items[index]?.title || 'Certifications & Credentials'">
+                    <h2 class="text-xl sm:text-2xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-snug tracking-tight" x-text="items[index]?.title || 'Certifications & Credentials'">
                     </h2>
                 </div>
 
@@ -188,36 +190,36 @@
                     <!-- Top Row: Issuer & Date -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <!-- Issuer / Organizer -->
-                        <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
-                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
+                        <div class="bg-white/90 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-sm dark:shadow-inner">
+                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                             </div>
                             <div class="min-w-0 text-left">
-                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issuer</p>
-                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || '-'"></p>
+                                <p class="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issuer</p>
+                                <p class="text-slate-800 dark:text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issuer || '-'"></p>
                             </div>
                         </div>
 
                         <!-- Issue Date -->
-                        <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-inner">
-                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
+                        <div class="bg-white/90 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 min-w-0 shadow-sm dark:shadow-inner">
+                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             </div>
                             <div class="min-w-0 text-left">
-                                <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issued Date</p>
-                                <p class="text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '-'"></p>
+                                <p class="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold tracking-wider">Issued Date</p>
+                                <p class="text-slate-800 dark:text-gray-200 font-medium truncate text-xs" x-text="items[index]?.issue_date || '-'"></p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Bottom Row: Credential No -->
-                    <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-inner">
-                        <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
+                    <div class="bg-white/90 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3 flex items-center space-x-3 shadow-sm dark:shadow-inner">
+                        <div class="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div class="min-w-0 flex-1 text-left">
-                            <p class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Credential ID / No.</p>
-                            <p class="text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '-'"></p>
+                            <p class="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold tracking-wider">Credential ID / No.</p>
+                            <p class="text-slate-900 dark:text-gray-200 font-semibold font-mono text-xs break-all leading-normal" x-text="items[index]?.credential_id || '-'"></p>
                         </div>
                     </div>
 

@@ -1,4 +1,4 @@
-<section id="home" class="relative w-full py-12 md:py-20 overflow-hidden">
+<section id="home" class="relative w-full py-12 md:py-20 overflow-hidden section-reveal">
     
     <!-- Dynamic Background Handler (Gambar / GIF / Video MP4) -->
     @if(!empty($hero->bg_image))
@@ -22,8 +22,8 @@
             </div>
         @endif
 
-        <!-- Dark Overlay (Agar teks tetap mudah terbaca di atas video/gambar) -->
-        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px] z-0"></div>
+        <!-- Dark / Light Overlay (Dibuat tipis & transparan di mode terang agar grafis background tetap terlihat jelas & tajam) -->
+        <div class="absolute inset-0 bg-white/15 dark:bg-slate-950/80 backdrop-blur-[0.5px] z-0"></div>
     @endif
 
     <!-- Container Utama -->
@@ -32,13 +32,17 @@
         <!-- Kolom Kiri: Content -->
         <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
             
-            <!-- 1. Sub-title & Title Header -->
+            <!-- 1. Sub-title & Title Header (DevPort Style) -->
             <div class="space-y-4 text-center lg:text-left">
-                <span class="text-cyan-400 font-semibold tracking-widest text-xs uppercase bg-cyan-500/10 px-3.5 py-1.5 rounded-full border border-cyan-500/20 inline-block">
-                    {{ $hero->sub_title ?? 'SOFTWARE DEVELOPER' }}
-                </span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 dark:bg-slate-900/90 border border-slate-700/80 text-xs font-semibold text-slate-200 shadow-md backdrop-blur-md">
+                    <span class="relative flex h-2 w-2 items-center justify-center">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span>{{ $hero->sub_title ?? 'SOFTWARE DEVELOPER' }}</span>
+                </div>
 
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)]">
                     <span>Hi, I'm</span>
                     
                     <div class="mt-2 md:mt-3">
@@ -69,7 +73,7 @@
                                         }
                                     }
                                 }"
-                                class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-300 border-r-4 border-cyan-400"
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-400 drop-shadow-[0_0_30px_rgba(56,189,248,0.7)] border-r-4 border-cyan-400"
                                 x-text="text">
                             </span>
                         </span>
@@ -80,40 +84,40 @@
             <!-- 2. Profil Foto (TAMPIL DI MOBILE SAJA - Sebelum Bio) -->
             <div class="block lg:hidden my-2">
                 <div class="relative w-full max-w-xs mx-auto flex flex-col items-center">
-                    <div class="absolute w-60 h-60 bg-gradient-to-tr from-blue-600/30 to-cyan-400/20 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute w-60 h-60 bg-gradient-to-tr from-blue-500/20 to-cyan-400/20 dark:from-blue-600/30 dark:to-cyan-400/20 rounded-full blur-3xl -z-10 animate-subtle-pulse"></div>
                     
                     @if(!empty($hero->profile_image))
                         <img src="{{ asset('storage/' . $hero->profile_image) }}" 
                              alt="{{ $hero->name }}" 
-                             class="w-full h-auto max-h-[380px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)]">
+                             class="w-full h-auto max-h-[380px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)]">
                     @else
-                        <div class="w-full h-[280px] bg-slate-900/50 rounded-3xl flex items-center justify-center text-gray-500 border border-slate-800">
+                        <div class="w-full h-[280px] bg-slate-900/60 rounded-3xl flex items-center justify-center text-gray-400 border border-slate-800">
                             Foto Profil Belum Diunggah
                         </div>
                     @endif
 
                     <!-- Floating Stats Card (Mobile) -->
-                    <div class="w-full -mt-6 z-10 bg-slate-900/90 backdrop-blur-md border border-slate-800/80 p-3.5 rounded-2xl flex justify-around text-center shadow-xl">
+                    <div class="w-full -mt-6 z-10 bg-white/95 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 p-3.5 rounded-2xl flex justify-around text-center shadow-xl dark:shadow-2xl">
                         <div>
-                            <h4 class="text-cyan-400 text-lg font-black">{{ $hero->experience_years ?? '3+' }}</h4>
-                            <p class="text-[10px] text-gray-400 font-medium">Experience</p>
+                            <h4 class="text-cyan-600 dark:text-cyan-400 text-lg font-black">{{ $hero->experience_years ?? '3+' }}</h4>
+                            <p class="text-[10px] text-slate-700 dark:text-gray-300 font-semibold">Experience</p>
                         </div>
-                        <div class="border-r border-slate-800/80"></div>
+                        <div class="border-r border-slate-200 dark:border-slate-800/80"></div>
                         <div>
-                            <h4 class="text-cyan-400 text-lg font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
-                            <p class="text-[10px] text-gray-400 font-medium">Projects</p>
+                            <h4 class="text-cyan-600 dark:text-cyan-400 text-lg font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
+                            <p class="text-[10px] text-slate-700 dark:text-gray-300 font-semibold">Projects</p>
                         </div>
-                        <div class="border-r border-slate-800/80"></div>
+                        <div class="border-r border-slate-200 dark:border-slate-800/80"></div>
                         <div>
-                            <h4 class="text-cyan-400 text-lg font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
-                            <p class="text-[10px] text-gray-400 font-medium">Certificates</p>
+                            <h4 class="text-cyan-600 dark:text-cyan-400 text-lg font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
+                            <p class="text-[10px] text-slate-700 dark:text-gray-300 font-semibold">Certificates</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- 3. Bio (Tepat Di Bawah Foto & Rata Tengah saat Mobile) -->
-            <p class="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl text-center lg:text-left mx-auto lg:mx-0">
+            <p class="text-slate-100 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl text-center lg:text-left mx-auto lg:mx-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] font-normal">
                 {{ $hero->bio ?? 'I build scalable, high-performance web applications that solve real-world problems and create impact.' }}
             </p>
 
@@ -126,9 +130,9 @@
                 @if(is_array($highlights) && count($highlights) > 0)
                     <div class="flex flex-wrap justify-center lg:justify-start gap-2.5 pt-2">
                         @foreach($highlights as $highlight)
-                            <div class="flex items-center space-x-2 text-xs md:text-sm text-gray-300 bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl backdrop-blur-sm">
-                                <span class="text-cyan-400">❖</span>
-                                <span>{{ $highlight }}</span>
+                            <div class="flex items-center space-x-2 text-xs md:text-sm text-slate-100 bg-slate-900/85 border border-slate-700/80 px-3.5 py-2 rounded-xl backdrop-blur-md shadow-lg hover:border-cyan-400/50 transition-colors">
+                                <span class="text-cyan-400 font-bold">❖</span>
+                                <span class="font-medium">{{ $highlight }}</span>
                             </div>
                         @endforeach
                     </div>
@@ -137,13 +141,13 @@
 
             <!-- 5. Buttons CTA -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2">
-                <a href="{{ $hero->cta_primary_link ?? '#projects' }}" class="bg-gradient-to-r from-cyan-500 via-blue-600 to-blue-700 hover:from-cyan-400 hover:to-blue-600 text-white px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-cyan-500/20 transition">
+                <a href="{{ $hero->cta_primary_link ?? '#projects' }}" class="bg-gradient-to-r from-cyan-500 via-blue-600 to-blue-700 hover:from-cyan-400 hover:to-blue-600 text-white px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-cyan-500/25 hover:scale-105 active:scale-95 transition-all">
                     <span>{{ $hero->cta_primary_text ?? 'View My Work' }}</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
 
                 @if(!empty($hero->cv_file_path))
-                    <a href="{{ asset('storage/' . $hero->cv_file_path) }}" target="_blank" class="bg-slate-900/90 border border-slate-700/80 hover:bg-slate-800 text-gray-200 px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 transition">
+                    <a href="{{ asset('storage/' . $hero->cv_file_path) }}" target="_blank" class="bg-slate-900/90 border border-slate-600 hover:bg-slate-800 text-white px-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 transition shadow-lg hover:shadow-cyan-500/10">
                         <span>Download CV</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     </a>
@@ -154,34 +158,34 @@
 
         <!-- Kolom Kanan: Profile Image & Floating Card (DESKTOP ONLY) -->
         <div class="hidden lg:flex lg:col-span-5 relative flex-col items-center justify-center">
-            <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-gradient-to-tr from-blue-600/30 to-cyan-400/20 rounded-full blur-3xl -z-10"></div>
+            <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-gradient-to-tr from-blue-500/20 to-cyan-400/20 dark:from-blue-600/30 dark:to-cyan-400/20 rounded-full blur-3xl -z-10 animate-subtle-pulse"></div>
 
             <div class="relative w-full max-w-sm flex flex-col items-center">
                 @if(!empty($hero->profile_image))
                     <img src="{{ asset('storage/' . $hero->profile_image) }}" 
                          alt="{{ $hero->name }}" 
-                         class="w-full h-auto max-h-[520px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] transition duration-500 hover:scale-105">
+                         class="w-full h-auto max-h-[520px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] transition duration-500 hover:scale-105">
                 @else
-                    <div class="w-full h-[400px] bg-slate-900/50 rounded-3xl flex items-center justify-center text-gray-500 border border-slate-800">
+                    <div class="w-full h-[400px] bg-slate-100 dark:bg-slate-900/50 rounded-3xl flex items-center justify-center text-gray-500 border border-slate-200 dark:border-slate-800">
                         Foto Profil Belum Diunggah
                     </div>
                 @endif
 
                 <!-- Floating Stats Card (Desktop) -->
-                <div class="w-[95%] -mt-6 sm:-mt-8 z-10 bg-slate-900/80 backdrop-blur-md border border-slate-800/80 p-4 rounded-2xl flex justify-around text-center shadow-2xl shadow-black/50">
+                <div class="w-[95%] -mt-6 sm:-mt-8 z-10 bg-white/95 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 p-4 rounded-2xl flex justify-around text-center shadow-xl dark:shadow-2xl dark:shadow-black/50">
                     <div>
-                        <h4 class="text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->experience_years ?? '3+' }}</h4>
-                        <p class="text-[11px] text-gray-400 font-medium">Experience</p>
+                        <h4 class="text-cyan-600 dark:text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->experience_years ?? '3+' }}</h4>
+                        <p class="text-[11px] text-slate-700 dark:text-gray-300 font-semibold">Experience</p>
                     </div>
-                    <div class="border-r border-slate-800/80"></div>
+                    <div class="border-r border-slate-200 dark:border-slate-800/80"></div>
                     <div>
-                        <h4 class="text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
-                        <p class="text-[11px] text-gray-400 font-medium">Projects Completed</p>
+                        <h4 class="text-cyan-600 dark:text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->projects_completed ?? '20+' }}</h4>
+                        <p class="text-[11px] text-slate-700 dark:text-gray-300 font-semibold">Projects Completed</p>
                     </div>
-                    <div class="border-r border-slate-800/80"></div>
+                    <div class="border-r border-slate-200 dark:border-slate-800/80"></div>
                     <div>
-                        <h4 class="text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
-                        <p class="text-[11px] text-gray-400 font-medium">Certifications</p>
+                        <h4 class="text-cyan-600 dark:text-cyan-400 text-xl sm:text-2xl font-black">{{ $hero->happy_clients ?? '10+' }}</h4>
+                        <p class="text-[11px] text-slate-700 dark:text-gray-300 font-semibold">Certifications</p>
                     </div>
                 </div>
             </div>
