@@ -7,13 +7,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ $hero->tagline ?? 'Portfolio website - Full Stack Web Developer menggunakan Laravel, Filament, dan Tailwind CSS.' }}">
+    <meta name="theme-color" content="#0b101d" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
     <title>{{ $hero->name ?? 'Portofolio' }} - Portfolio Website</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('logo.png') }}">
     
-    <!-- Google Fonts: Plus Jakarta Sans (Modern DevPort Typography) -->
+    <!-- 1. Resource Preconnect & DNS-Prefetch untuk CDN Eksternal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- 2. Preload Critical LCP Images (Prioritas Tertinggi untuk LCP) -->
+    @if(!empty($hero->profile_image))
+        <link rel="preload" as="image" href="{{ asset('storage/' . $hero->profile_image) }}" fetchpriority="high">
+    @endif
+    @if(!empty($hero->bg_image) && !in_array(strtolower(pathinfo($hero->bg_image, PATHINFO_EXTENSION)), ['mp4', 'mov', 'webm', 'ogg']))
+        <link rel="preload" as="image" href="{{ asset('storage/' . $hero->bg_image) }}" fetchpriority="high">
+    @endif
+
+    <!-- 3. Non-Render-Blocking Google Fonts (Plus Jakarta Sans) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    </noscript>
+
+    <!-- 4. Preload Swiper CSS agar Tidak Render-Blocking -->
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    </noscript>
 
     <!-- Script Anti-Flicker / Preload Theme -->
     <script>
@@ -27,23 +53,10 @@
         })();
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#0b101d',
-                        lightBg: '#f8fafc',
-                    }
-                }
-            }
-        }
-    </script>
+    {{-- 5. Compiled Tailwind CSS (Vite Build - Non-Render-Blocking, No CDN) --}}
+    @vite(['resources/css/app.css'])
+
+    {{-- Fallback: Jika Vite build belum ada atau sedang dev mode, CDN tidak dipakai --}}
 
     <!-- Custom CSS untuk Smooth Scroll, Transisi Tema, dan Efek Animasi Section -->
     <style>
@@ -62,11 +75,20 @@
             background-size: 28px 28px;
         }
 
-        /* Transisi warna yang halus saat pergantian tema */
-        body, nav, footer, section, div, button, a, p, h1, h2, h3, h4, span {
-            transition-property: background-color, border-color, color, fill, stroke, box-shadow;
-            transition-duration: 250ms;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        /* Transisi warna yang halus saat pergantian tema - SCOPED agar tidak trigger recalc pada semua elemen */
+        :root {
+            --theme-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                                color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body, nav, footer {
+            transition: var(--theme-transition), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        section {
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        button, a {
+            transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, opacity 200ms ease, transform 200ms ease;
         }
 
         /* Animasi Muncul Halus (Smooth Section Reveal) */
@@ -129,14 +151,17 @@
         .galaxy-orb-1 {
             animation: galaxyFloat1 20s ease-in-out infinite;
             will-change: transform;
+            contain: layout style;
         }
         .galaxy-orb-2 {
             animation: galaxyFloat2 24s ease-in-out infinite;
             will-change: transform;
+            contain: layout style;
         }
         .galaxy-orb-3 {
             animation: galaxyFloat3 22s ease-in-out infinite;
             will-change: transform;
+            contain: layout style;
         }
     </style>
 

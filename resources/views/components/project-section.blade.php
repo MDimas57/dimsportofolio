@@ -1,8 +1,5 @@
 <section id="projects" class="relative max-w-7xl mx-auto px-6 md:px-16 pt-16 pb-10 section-reveal">
     
-    <!-- Include Swiper CSS via CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <!-- Garis Pembatas -->
     <div class="border-t border-slate-200 dark:border-slate-800/80 w-full mb-16"></div>
 
@@ -35,7 +32,9 @@
                                 <div class="relative w-full h-52 overflow-hidden bg-slate-100 dark:bg-slate-950">
                                     @if($item->thumbnail)
                                         <img src="{{ asset('storage/' . $item->thumbnail) }}" 
-                                             alt="{{ $item->title }}" 
+                                             alt="{{ $item->title }}"
+                                             width="800" height="208"
+                                             loading="lazy" decoding="async"
                                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
                                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 dark:from-slate-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-300"></div>
                                     @else
@@ -120,7 +119,7 @@
 </section>
 
 <!-- Include Swiper JS via CDN & Inisialisasi -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         new Swiper('.projectSwiper', {

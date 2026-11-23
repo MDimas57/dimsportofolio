@@ -39,6 +39,10 @@
                             @if($item->icon)
                                 <img src="{{ asset('storage/' . $item->icon) }}" 
                                      alt="{{ $item->name }}" 
+                                     width="48"
+                                     height="48"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="h-10 sm:h-12 w-auto object-contain">
                             @else
                                 <div class="h-10 sm:h-12 w-10 sm:w-12 rounded-xl bg-orange-500/20 text-orange-500 flex items-center justify-center font-bold text-lg">
@@ -56,6 +60,10 @@
                             @if($item->icon)
                                 <img src="{{ asset('storage/' . $item->icon) }}" 
                                      alt="{{ $item->name }}" 
+                                     width="48"
+                                     height="48"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="h-10 sm:h-12 w-auto object-contain">
                             @else
                                 <div class="h-10 sm:h-12 w-10 sm:w-12 rounded-xl bg-orange-500/20 text-orange-500 flex items-center justify-center font-bold text-lg">

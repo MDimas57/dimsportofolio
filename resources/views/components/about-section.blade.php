@@ -20,6 +20,10 @@
                     @if(!empty($about->image))
                         <img src="{{ asset('storage/' . $about->image) }}" 
                              alt="About Me Workspace" 
+                             width="450"
+                             height="420"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-[360px] sm:h-[420px] object-cover rounded-2xl transition duration-500 group-hover:scale-105">
                     @else
                         <div class="w-full h-[360px] sm:h-[420px] bg-slate-100 dark:bg-slate-950/80 rounded-2xl flex items-center justify-center text-gray-500 border border-slate-200 dark:border-slate-800">
@@ -101,7 +105,9 @@
             <div class="bg-white/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-3 shadow-xl dark:shadow-2xl backdrop-blur-sm overflow-hidden group">
                 @if(!empty($about->image))
                     <img src="{{ asset('storage/' . $about->image) }}" 
-                         alt="About Me Workspace" 
+                         alt="About Me Workspace"
+                         width="600" height="450"
+                         loading="lazy" decoding="async"
                          class="w-full h-[380px] sm:h-[450px] object-cover rounded-2xl transition duration-500 group-hover:scale-105">
                 @else
                     <div class="w-full h-[380px] sm:h-[450px] bg-slate-100 dark:bg-slate-950/80 rounded-2xl flex items-center justify-center text-gray-500 border border-slate-200 dark:border-slate-800">

@@ -57,6 +57,8 @@
                                                 :src="item.url"
                                                 :alt="item.title"
                                                 class="w-full h-full object-cover pointer-events-none rounded-2xl"
+                                                loading="lazy"
+                                                decoding="async"
                                                 draggable="false"
                                             >
                                             <!-- Flip Hint Badge -->
@@ -73,6 +75,8 @@
                                                     :src="item.back_url"
                                                     :alt="item.title + ' Back'"
                                                     class="w-full h-full object-cover pointer-events-none rounded-2xl"
+                                                    loading="lazy"
+                                                    decoding="async"
                                                     draggable="false"
                                                 >
                                             </template>
@@ -171,6 +175,8 @@
                                         :src="item.url"
                                         :alt="item.title"
                                         class="w-full h-full object-cover pointer-events-none select-none"
+                                        loading="lazy"
+                                        decoding="async"
                                     >
                                 </button>
                             </template>

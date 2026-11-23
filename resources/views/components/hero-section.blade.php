@@ -89,6 +89,11 @@
                     @if(!empty($hero->profile_image))
                         <img src="{{ asset('storage/' . $hero->profile_image) }}" 
                              alt="{{ $hero->name }}" 
+                             width="380"
+                             height="380"
+                             loading="eager"
+                             fetchpriority="high"
+                             decoding="sync"
                              class="w-full h-auto max-h-[380px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)]">
                     @else
                         <div class="w-full h-[280px] bg-slate-900/60 rounded-3xl flex items-center justify-center text-gray-400 border border-slate-800">
@@ -164,6 +169,11 @@
                 @if(!empty($hero->profile_image))
                     <img src="{{ asset('storage/' . $hero->profile_image) }}" 
                          alt="{{ $hero->name }}" 
+                         width="400"
+                         height="520"
+                         loading="eager"
+                         fetchpriority="high"
+                         decoding="sync"
                          class="w-full h-auto max-h-[520px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] transition duration-500 hover:scale-105">
                 @else
                     <div class="w-full h-[400px] bg-slate-100 dark:bg-slate-900/50 rounded-3xl flex items-center justify-center text-gray-500 border border-slate-200 dark:border-slate-800">
